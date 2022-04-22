@@ -2,6 +2,8 @@ const GuessInput = ({
   secretCode,
   setNumAndPosMatch,
   setNumMatch,
+  guess,
+  setGuess,
   ...props
 }) => {
   // Iterate through guess. Check for matching character, and matching position.
@@ -20,6 +22,7 @@ const GuessInput = ({
         }
       }
     }
+    document.getElementById("guess").value = "";
   };
 
   return (
@@ -49,8 +52,8 @@ const GuessInput = ({
           name="submitGuess"
           style={{ width: "10rem", marginTop: "1rem", fontSize: "1rem" }}
           onClick={() => {
-            checkGuess(secretCode, document.getElementById("guess").value);
-            document.getElementById("guess").value = "";
+            setGuess(document.getElementById("guess").value);
+            checkGuess(secretCode, guess);
           }}
         >
           Submit
