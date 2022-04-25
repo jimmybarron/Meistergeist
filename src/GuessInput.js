@@ -2,20 +2,21 @@ const GuessInput = ({
   secretCode,
   setNumAndPosMatch,
   setNumMatch,
-  guess,
-  setGuess,
+  guesses,
+  setGuesses,
+  setGuessCount,
   ...props
 }) => {
   // Iterate through guess. Check for matching character, and matching position.
   // If number is contained in guess, log 'numMatch' and 'numAndPosMatch' for both, to guessSummary object
-  const checkGuess = (secretCode, guess) => {
-    for (let i = 0; i < guess.length; i++) {
+  const checkGuess = (secretCode, guesses) => {
+    for (let i = 0; i < guesses[0].length; i++) {
       for (let j = 0; j < secretCode.length; j++) {
-        if (i === j && guess.charAt(i) === secretCode.charAt(j)) {
+        if (i === j && guesses[0].charAt(i) === secretCode.charAt(j)) {
           setNumAndPosMatch((prevState) => {
             return prevState + 1;
           });
-        } else if (guess.charAt(i) === secretCode.charAt(j)) {
+        } else if (guesses[0].charAt(i) === secretCode.charAt(j)) {
           setNumMatch((prevState) => {
             return prevState + 1;
           });
@@ -52,8 +53,12 @@ const GuessInput = ({
           name="submitGuess"
           style={{ width: "10rem", marginTop: "1rem", fontSize: "1rem" }}
           onClick={() => {
-            setGuess(document.getElementById("guess").value);
-            checkGuess(secretCode, guess);
+            // Log guess
+            setGuesses((prevState) => {
+              prevState.unshift(document.getElementById("guess").value);
+              return prevState;
+            });
+            checkGuess(secretCode, guesses);
           }}
         >
           Submit
