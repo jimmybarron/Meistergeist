@@ -1,12 +1,12 @@
 const GuessAttempts = ({
-  guess,
+  guesses,
   numAndPosMatch,
   numMatch,
   setNumAndPosMatch,
   setNumMatch,
   ...props
 }) => {
-  // Create a visual representation of the guessAttempt styled using the passed in state
+  // Create a visual representation of the guessesAttempt styled using the passed in state
   const noMatchStyle = {
     fontSize: "2rem",
     textAlign: "center",
@@ -28,8 +28,11 @@ const GuessAttempts = ({
     color: "blue",
   };
 
-  return (
+  console.log(guesses);
+
+  const pastGuessAttempts = guesses.map((guess, index) => {
     <div
+      key={index}
       style={
         numMatch > 0
           ? numMatchStyle
@@ -39,8 +42,10 @@ const GuessAttempts = ({
       }
     >
       {guess}
-    </div>
-  );
+    </div>;
+  });
+
+  return pastGuessAttempts;
 };
 
 export default GuessAttempts;
