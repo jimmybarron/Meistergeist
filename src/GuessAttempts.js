@@ -1,51 +1,24 @@
-const GuessAttempts = ({
-  guesses,
-  numAndPosMatch,
-  numMatch,
-  setNumAndPosMatch,
-  setNumMatch,
-  ...props
-}) => {
-  // Create a visual representation of the guessesAttempt styled using the passed in state
-  const noMatchStyle = {
-    fontSize: "2rem",
-    textAlign: "center",
-    margin: "2rem 1rem",
-    color: "black",
-  };
+import "./GuessAttempts.css";
 
-  const numMatchStyle = {
-    fontSize: "2rem",
-    textAlign: "center",
-    margin: "2rem 1rem",
-    color: "red",
-  };
+const GuessAttempts = ({ guesses, ...props }) => {
+  //   const pastGuessAttempts = guesses.map((guess, index) => {
+  //     <div
+  //       key={index}
+  //       class={
+  //         numMatch > 0
+  //           ? numMatchStyle
+  //           : numAndPosMatch
+  //           ? numAndPosMatchStyle
+  //           : noMatchStyle
+  //       }
+  //     >
+  //       {guess}
+  //     </div>;
+  //   });
 
-  const numAndPosMatchStyle = {
-    fontSize: "2rem",
-    textAlign: "center",
-    margin: "2rem 1rem",
-    color: "blue",
-  };
-
-  console.log(guesses);
-
-  const pastGuessAttempts = guesses.map((guess, index) => {
-    <div
-      key={index}
-      style={
-        numMatch > 0
-          ? numMatchStyle
-          : numAndPosMatch
-          ? numAndPosMatchStyle
-          : noMatchStyle
-      }
-    >
-      {guess}
-    </div>;
+  return guesses.map((guess) => {
+    return guess;
   });
-
-  return pastGuessAttempts;
 };
 
 export default GuessAttempts;

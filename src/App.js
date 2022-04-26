@@ -6,24 +6,34 @@ import { useEffect, useState } from "react";
 function App() {
   // Get secret code
   let secretCode = "3409";
-
+  const [win, setWin] = useState();
   const [guesses, setGuesses] = useState([]);
 
-  // If 'numAndPosMatch' === 4; player wins, If 'numAndPosMatch' < 4 and 'guessAttempts' <= 9; player loses.
-  useEffect(() => {});
+  // Check for losing conditions
+  useEffect(() => {
+    if (guesses.length > 9) {
+      setWin(false);
+    }
+    if (win === true) {
+      document.getElementById("announcement").innerText = "You Win!";
+      document.getElementById("announcement").style.display = "block";
+    }
+    if (win === false) {
+      document.getElementById("announcement").innerText = "You Lose!";
+      document.getElementById("announcement").style.display = "block";
+    }
+  }, [guesses, win]);
 
   return (
     <>
       <div className="App">Mastermind</div>
-      <GuessAttempts
-        guesses={guesses}
-        numAndPosMatch={numAndPosMatch}
-        nunmMatch={numMatch}
-      />
+      <div id="announcement" style={{ display: "none" }}></div>
+      <div>{guesses}</div>
       <GuessInput
         secretCode={secretCode}
         guesses={guesses}
         setGuesses={setGuesses}
+        setWin={setWin}
       />
     </>
   );

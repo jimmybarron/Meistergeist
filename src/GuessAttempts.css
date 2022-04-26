@@ -1,0 +1,21 @@
+/* Create a visual representation of the guessesAttempt styled using the passed in state */
+.noMatchStyle {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 1rem;
+  color: black;
+}
+
+.numMatchStyle {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 1rem;
+  color: green;
+}
+
+.numAndPosMatchStyle {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 1rem;
+  color: blue;
+}

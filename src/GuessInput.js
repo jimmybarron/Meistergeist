@@ -1,69 +1,101 @@
-const GuessInput = ({
-  secretCode,
-  setNumAndPosMatch,
-  setNumMatch,
-  guesses,
-  setGuesses,
-  setGuessCount,
-  ...props
-}) => {
+import "./GuessInput.css";
+
+const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   // Iterate through guess. Check for matching character, and matching position.
   // If number is contained in guess, log 'numMatch' and 'numAndPosMatch' for both, to guessSummary object
-  const checkGuess = (secretCode, guesses) => {
-    for (let i = 0; i < guesses[0].length; i++) {
+  const checkGuess = (secretCode, guess) => {
+    // Track number of digits that are in the answer, and also in the right position as well
+    let numAndPosMatch = 0;
+    let numMatch = 0;
+
+    for (let i = 0; i < guess.length; i++) {
       for (let j = 0; j < secretCode.length; j++) {
-        if (i === j && guesses[0].charAt(i) === secretCode.charAt(j)) {
-          setNumAndPosMatch((prevState) => {
-            return prevState + 1;
-          });
-        } else if (guesses[0].charAt(i) === secretCode.charAt(j)) {
-          setNumMatch((prevState) => {
-            return prevState + 1;
-          });
+        if (i === j && guess.charAt(i) === secretCode.charAt(j)) {
+          numAndPosMatch++;
+        } else if (guess.charAt(i) === secretCode.charAt(j)) {
+          numMatch++;
         }
       }
     }
+    // Check for winning conditions
+    if (numAndPosMatch === 4) {
+      setWin(true);
+    }
+
+    // Create JSX of Guess Attempt
+    let guessAttempt = (
+      <div
+        className={
+          numAndPosMatch > 0
+            ? "numAndPosMatchStyle"
+            : numMatch > 0
+            ? "numMatchStyle"
+            : "noMatchStyle"
+        }
+        data-numMatch={numMatch}
+        data-numAndPosMatch={numAndPosMatch}
+      >
+        {guess}
+      </div>
+    );
+
+    // Add attemped to guess array
+    setGuesses((prevState) => {
+      return [...prevState, guessAttempt];
+    });
+  };
+
+  const validate = (event) => {
+    console.log(event.target.value.length);
+    if (event.target.value.length > 3) {
+      event.target.form[0].checkValidity();
+      event.target.form[0].reportValidity();
+    }
+  };
+
+  const submitGuess = (event) => {
+    event.target.form[0].checkValidity();
+    event.preventDefault();
+    let guess = document.getElementById("guess").value;
+    checkGuess(secretCode, guess);
     document.getElementById("guess").value = "";
   };
 
   return (
     <>
-      <div
+      <form
         style={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <label for="guess">Enter a guess</label>
+        <label htmlFor="guess">Enter a guess</label>
         <input
           id="guess"
+          autoFocus={true}
           type="tel"
-          maxLength="4"
-          autoFocus="true"
+          minLength={4}
+          maxLength={4}
+          pattern={"^[0-9]+$"}
+          required={true}
           style={{
             width: "10rem",
             height: "3rem",
             textAlign: "center",
             fontSize: "2rem",
           }}
+          onChange={validate}
         ></input>
 
         <button
           name="submitGuess"
           style={{ width: "10rem", marginTop: "1rem", fontSize: "1rem" }}
-          onClick={() => {
-            // Log guess
-            setGuesses((prevState) => {
-              prevState.unshift(document.getElementById("guess").value);
-              return prevState;
-            });
-            checkGuess(secretCode, guesses);
-          }}
+          onClick={submitGuess}
         >
           Submit
         </button>
-      </div>
+      </form>
     </>
   );
 };
