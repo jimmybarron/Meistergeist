@@ -2,20 +2,20 @@
 .noMatchStyle {
   font-size: 2rem;
   text-align: center;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem;
   color: black;
 }
 
 .numMatchStyle {
   font-size: 2rem;
   text-align: center;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem;
   color: green;
 }
 
 .numAndPosMatchStyle {
   font-size: 2rem;
   text-align: center;
-  margin: 2rem 1rem;
+  margin: 1rem 1rem;
   color: blue;
 }

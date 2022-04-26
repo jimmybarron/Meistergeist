@@ -14,20 +14,18 @@ function App() {
     if (guesses.length > 9) {
       setWin(false);
     }
-    if (win === true) {
-      document.getElementById("announcement").innerText = "You Win!";
-      document.getElementById("announcement").style.display = "block";
-    }
-    if (win === false) {
-      document.getElementById("announcement").innerText = "You Lose!";
-      document.getElementById("announcement").style.display = "block";
-    }
   }, [guesses, win]);
 
   return (
     <>
       <div className="App">Mastermind</div>
-      <div id="announcement" style={{ display: "none" }}></div>
+      <div id="announcement" style={{ textAlign: "center", margin: "2rem" }}>
+        {win === true
+          ? "You Are A Winner"
+          : win === false
+          ? "You Not A Winner"
+          : ""}
+      </div>
       <GuessAttempts guesses={guesses} />
       <GuessInput
         secretCode={secretCode}
