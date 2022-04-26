@@ -23,21 +23,11 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     }
 
     // Create JSX of Guess Attempt
-    let guessAttempt = (
-      <div
-        className={
-          numAndPosMatch > 0
-            ? "numAndPosMatchStyle"
-            : numMatch > 0
-            ? "numMatchStyle"
-            : "noMatchStyle"
-        }
-        data-numMatch={numMatch}
-        data-numAndPosMatch={numAndPosMatch}
-      >
-        {guess}
-      </div>
-    );
+    let guessAttempt = {
+      guessNum: guess,
+      numMatch: numMatch,
+      numAndPosMatch: numAndPosMatch,
+    };
 
     // Add attemped to guess array
     setGuesses((prevState) => {
@@ -46,7 +36,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   };
 
   const validate = (event) => {
-    console.log(event.target.value.length);
+    // console.log(event.target.value.length)
     if (event.target.value.length > 3) {
       event.target.form[0].checkValidity();
       event.target.form[0].reportValidity();

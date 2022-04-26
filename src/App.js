@@ -28,7 +28,7 @@ function App() {
     <>
       <div className="App">Mastermind</div>
       <div id="announcement" style={{ display: "none" }}></div>
-      <div>{guesses}</div>
+      <GuessAttempts guesses={guesses} />
       <GuessInput
         secretCode={secretCode}
         guesses={guesses}
