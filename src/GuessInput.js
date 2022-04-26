@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./GuessInput.css";
 
 const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
@@ -35,8 +36,11 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     });
   };
 
-  const validate = (event) => {
-    // console.log(event.target.value.length)
+  // Controlled input
+  const [guessInput, setGuessInput] = useState("");
+  const onChange = (event) => {
+    setGuessInput(event.target.value);
+    // Validate
     if (event.target.value.length > 3) {
       event.target.form[0].checkValidity();
       event.target.form[0].reportValidity();
@@ -44,11 +48,9 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   };
 
   const submitGuess = (event) => {
-    event.target.form[0].checkValidity();
     event.preventDefault();
-    let guess = document.getElementById("guess").value;
-    checkGuess(secretCode, guess);
-    document.getElementById("guess").value = "";
+    checkGuess(secretCode, guessInput);
+    setGuessInput("");
   };
 
   return (
@@ -60,7 +62,14 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           alignItems: "center",
         }}
       >
-        <label htmlFor="guess">Enter a guess</label>
+        <label
+          style={{ textAlign: "center", marginBottom: "1rem" }}
+          htmlFor="guess"
+        >
+          Enter a 4 digit code,
+          <br />
+          using only 0 - 7
+        </label>
         <input
           id="guess"
           autoFocus={true}
@@ -69,13 +78,15 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           maxLength={4}
           pattern={"^[0-9]+$"}
           required={true}
+          autoComplete="off"
           style={{
             width: "10rem",
             height: "3rem",
             textAlign: "center",
             fontSize: "2rem",
           }}
-          onChange={validate}
+          onChange={onChange}
+          value={guessInput}
         ></input>
 
         <button
