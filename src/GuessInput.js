@@ -10,14 +10,27 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     let numMatch = 0;
 
     for (let i = 0; i < guess.length; i++) {
+      let currentNumMatch = false;
+      let currentNumAndPosMatch = false;
       for (let j = 0; j < secretCode.length; j++) {
+        // Log match type
         if (i === j && guess.charAt(i) === secretCode.charAt(j)) {
-          numAndPosMatch++;
-        } else if (guess.charAt(i) === secretCode.charAt(j)) {
-          numMatch++;
+          currentNumAndPosMatch = true;
+          // Log position match
+        } else if (i === j) {
+          currentNumMatch = true;
+        }
+        // At the end of the iteration only return one type of match
+        if (j === secretCode.length - 1) {
+          if (currentNumAndPosMatch) {
+            numAndPosMatch++;
+          } else if (currentNumMatch) {
+            numMatch++;
+          }
         }
       }
     }
+    console.log(`${numAndPosMatch} ${numMatch}`);
     // Check for winning conditions
     if (numAndPosMatch === 4) {
       setWin(true);
@@ -62,14 +75,6 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           alignItems: "center",
         }}
       >
-        <label
-          style={{ textAlign: "center", marginBottom: "1rem" }}
-          htmlFor="guess"
-        >
-          Enter a 4 digit code,
-          <br />
-          using only 0 - 7
-        </label>
         <input
           id="guess"
           autoFocus={true}
@@ -88,6 +93,18 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           onChange={onChange}
           value={guessInput}
         ></input>
+        <label
+          style={{
+            fontSize: "0.7rem",
+            textAlign: "center",
+            margin: "0.5rem 0",
+          }}
+          htmlFor="guess"
+        >
+          Enter a 4 digit code,
+          <br />
+          using only 0 - 7
+        </label>
 
         <button
           name="submitGuess"

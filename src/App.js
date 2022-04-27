@@ -12,23 +12,19 @@ function App() {
 
   // Get secret code
   const getSecretCode = async () => {
-    await fetch(
-      "https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&rnd=new&format=plain",
-      {
-        method: "GET",
-        mode: "cors",
-      }
-    )
-      // Wait for the fetch to resolve
-      .then((resp) => {
-        // wait for the text method to resolve to a string
-        resp.text().then((resp) => {
-          setSecretCode(resp.replace(/\n/g, ""));
-        });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    try {
+      let response = await fetch(
+        "https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&rnd=new&format=plain",
+        {
+          method: "GET",
+          mode: "cors",
+        }
+      );
+      let respText = await response.text();
+      setSecretCode(respText.replace(/\n/g, ""));
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   // Reset Game
@@ -50,6 +46,7 @@ function App() {
 
   // Check for losing conditions
   useEffect(() => {
+    console.log(guesses);
     if (guesses.length > 9) {
       setWin(false);
     }
@@ -72,17 +69,17 @@ function App() {
       </div>
       <GuessAttempts guesses={guesses} />
 
-      {/* Hide Input if won or lost */}
-      {win === undefined && (
+      {/* Hide Input or Reset based on win state */}
+      {win === undefined ? (
         <GuessInput
           secretCode={secretCode}
           guesses={guesses}
           setGuesses={setGuesses}
           setWin={setWin}
         />
+      ) : (
+        <ResetButton handleClick={resetGame} />
       )}
-      {/* Show reset button if won or lost */}
-      {win !== undefined && <ResetButton handleClick={resetGame} />}
     </>
   );
 }
