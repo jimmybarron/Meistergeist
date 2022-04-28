@@ -66,11 +66,12 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   const [guessInput, setGuessInput] = useState("");
   const onChange = (event) => {
     setGuessInput(event.target.value);
+
     // Validate
-    if (event.target.value.length > 3) {
-      event.target.form[0].checkValidity();
-      event.target.form[0].reportValidity();
-    }
+    // if (event.target.value.length > 3) {
+    //   event.target.form[0].checkValidity();
+    //   event.target.form[0].reportValidity();
+    // }
   };
 
   const submitGuess = (event) => {
@@ -95,7 +96,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           type="tel"
           minLength={4}
           maxLength={4}
-          pattern={"^[0-9]+$"}
+          pattern={"[0-7]{4}"}
           required={true}
           autoComplete="off"
           style={{
@@ -106,6 +107,11 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           }}
           onChange={onChange}
           value={guessInput}
+          onKeyPress={(event) => {
+            if (!/[0-7]/.test(event.key) && event.key !== "Enter") {
+              event.preventDefault();
+            }
+          }}
         ></input>
         <label
           style={{
