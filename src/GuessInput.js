@@ -81,42 +81,40 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
 
   return (
     <>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
+      <form className="guessForm">
         <div>{10 - guesses.length} Guess Remaining</div>
-        <input
-          id="guess"
-          autoFocus={true}
-          type="tel"
-          minLength={4}
-          maxLength={4}
-          pattern={"[0-7]{4}"}
-          required={true}
-          autoComplete="off"
-          style={{
-            width: "10rem",
-            height: "3rem",
-            textAlign: "center",
-            fontSize: "2rem",
-          }}
-          onChange={onChange}
-          value={guessInput}
-          onKeyPress={(event) => {
-            if (!/[0-7]/.test(event.key) && event.key !== "Enter") {
-              event.preventDefault();
-            }
-          }}
-        ></input>
+        <div style={{ display: "flex", position: "relative" }}>
+          <input
+            id="guess"
+            autoFocus={true}
+            type="tel"
+            minLength={4}
+            maxLength={4}
+            pattern={"[0-7]{4}"}
+            required={true}
+            autoComplete="off"
+            onChange={onChange}
+            value={guessInput}
+            onKeyPress={(event) => {
+              if (!/[0-7]/.test(event.key) && event.key !== "Enter") {
+                event.preventDefault();
+              }
+            }}
+          ></input>
+          <button
+            name="submitGuess"
+            className="submitBtn"
+            onClick={submitGuess}
+          >
+            <div className="submitBtnSymbol">+</div>
+          </button>
+        </div>
         <label
           style={{
             fontSize: "0.7rem",
             textAlign: "center",
             margin: "0.5rem 0",
+            color: "var(--accent)",
           }}
           htmlFor="guess"
         >
@@ -124,14 +122,6 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           <br />
           using only 0 - 7
         </label>
-
-        <button
-          name="submitGuess"
-          style={{ width: "10rem", marginTop: "1rem", fontSize: "1rem" }}
-          onClick={submitGuess}
-        >
-          Submit
-        </button>
       </form>
     </>
   );
