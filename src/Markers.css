@@ -1,0 +1,13 @@
+@import url(./Colors.css);
+
+.numMatch {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--light-1);
+}
+
+.numAndPosMatch {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--dark-1);
+}

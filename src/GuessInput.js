@@ -82,7 +82,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   return (
     <>
       <form className="guessForm">
-        <div>{10 - guesses.length} Guess Remaining</div>
+        {/* <div>{10 - guesses.length} Guess Remaining</div> */}
         <div style={{ display: "flex", position: "relative" }}>
           <input
             id="guess"
