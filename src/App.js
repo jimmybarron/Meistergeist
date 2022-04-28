@@ -63,7 +63,7 @@ function App() {
         {win === true
           ? "You Are A Winner"
           : win === false
-          ? "You Are Not A Winner"
+          ? `You Are Not A Winner. Number was: ${secretCode}`
           : ""}
       </div>
       <GuessAttempts guesses={guesses} secretCode={secretCode} />
