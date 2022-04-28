@@ -12,7 +12,6 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     // Check for correct answer and return early
     if (guess === secretCode) {
       setWin(true);
-      return;
     }
 
     // Check for matching numbers and positions, then log and remove them from the search if so
