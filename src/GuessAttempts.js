@@ -1,16 +1,9 @@
 import "./GuessAttempts.css";
+import Markers from "./Markers.js";
 
 const GuessAttempts = ({ guesses, secretCode }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        margin: "1rem 0",
-      }}
-    >
+    <div className="pastGuessContain">
       {guesses.map((guess, index) => {
         return (
           <div
@@ -18,22 +11,15 @@ const GuessAttempts = ({ guesses, secretCode }) => {
             style={{
               width: "16rem",
               padding: "0 0 1rem 0",
-              border: "1px black solid",
             }}
           >
-            <div
-              className={
-                guess.numAndPosMatch > 0
-                  ? "numAndPosMatchStyle"
-                  : guess.numMatch > 0
-                  ? "numMatchStyle"
-                  : "noMatchStyle"
-              }
-            >
-              {guess.guessNum}
+            <div className="pastGuess">
+              <div>{guess.guessNum}</div>
+              <Markers
+                numMatch={guess.numMatch}
+                numAndPosMatch={guess.numAndPosMatch}
+              />
             </div>
-            <div>Perfect numbers: {guess.numAndPosMatch}</div>
-            <div>Just Number Correct: {guess.numMatch}</div>
           </div>
         );
       })}
