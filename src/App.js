@@ -46,7 +46,6 @@ function App() {
 
   // Check for losing conditions
   useEffect(() => {
-    console.log(guesses);
     if (guesses.length > 9) {
       setWin(false);
     }
@@ -67,7 +66,7 @@ function App() {
           ? "You Are Not A Winner"
           : ""}
       </div>
-      <GuessAttempts guesses={guesses} />
+      <GuessAttempts guesses={guesses} secretCode={secretCode} />
 
       {/* Hide Input or Reset based on win state */}
       {win === undefined ? (

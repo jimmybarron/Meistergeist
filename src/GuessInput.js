@@ -9,28 +9,41 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     let numAndPosMatch = 0;
     let numMatch = 0;
 
+    // Check for correct answer and return early
+    if (guess === secretCode) {
+      setWin(true);
+      return;
+    }
+
+    // Check for matching numbers and positions, then log and remove them from the search if so
+    let smallerGuess = "";
+    let smallerSecretCode = "";
+
     for (let i = 0; i < guess.length; i++) {
+      if (guess.charAt(i) === secretCode.charAt(i)) {
+        numAndPosMatch++;
+      } else {
+        smallerGuess += guess.charAt(i);
+        smallerSecretCode += secretCode.charAt(i);
+      }
+    }
+
+    // Search for matching numbers
+    for (let i = 0; i < smallerGuess.length; i++) {
       let currentNumMatch = false;
-      let currentNumAndPosMatch = false;
-      for (let j = 0; j < secretCode.length; j++) {
-        // Log match type
-        if (i === j && guess.charAt(i) === secretCode.charAt(j)) {
-          currentNumAndPosMatch = true;
-          // Log position match
-        } else if (i === j) {
+      for (let j = 0; j < smallerSecretCode.length; j++) {
+        if (smallerGuess.charAt(i) === smallerSecretCode.charAt(j)) {
           currentNumMatch = true;
         }
         // At the end of the iteration only return one type of match
-        if (j === secretCode.length - 1) {
-          if (currentNumAndPosMatch) {
-            numAndPosMatch++;
-          } else if (currentNumMatch) {
+        if (j === smallerSecretCode.length - 1) {
+          if (currentNumMatch) {
             numMatch++;
           }
         }
       }
     }
-    console.log(`${numAndPosMatch} ${numMatch}`);
+
     // Check for winning conditions
     if (numAndPosMatch === 4) {
       setWin(true);
@@ -75,6 +88,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           alignItems: "center",
         }}
       >
+        <div>{10 - guesses.length} Guess Remaining</div>
         <input
           id="guess"
           autoFocus={true}

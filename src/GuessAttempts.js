@@ -1,6 +1,6 @@
 import "./GuessAttempts.css";
 
-const GuessAttempts = ({ guesses, ...props }) => {
+const GuessAttempts = ({ guesses, secretCode }) => {
   return (
     <div
       style={{
@@ -14,6 +14,7 @@ const GuessAttempts = ({ guesses, ...props }) => {
       {guesses.map((guess, index) => {
         return (
           <div
+            key={index}
             style={{
               width: "16rem",
               padding: "0 0 1rem 0",
@@ -21,7 +22,6 @@ const GuessAttempts = ({ guesses, ...props }) => {
             }}
           >
             <div
-              key={index}
               className={
                 guess.numAndPosMatch > 0
                   ? "numAndPosMatchStyle"
