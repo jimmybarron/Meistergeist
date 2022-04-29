@@ -6,7 +6,6 @@ import ResetButton from "./ResetButton.js";
 import { useEffect, useState } from "react";
 
 function App() {
-  // ❔ Should all this be in one piece of state, would that be better?
   const [secretCode, setSecretCode] = useState();
   const [win, setWin] = useState();
   const [guesses, setGuesses] = useState([]);
@@ -63,7 +62,7 @@ function App() {
             ? `You Are Not A Winner. Number was: ${secretCode}`
             : ""}
         </div>
-        <div style={{ bottom: "0" }}>
+        <div>
           <GuessAttempts guesses={guesses} secretCode={secretCode} />
           {/* Hide Input or Reset based on win state */}
           {win === undefined ? (
