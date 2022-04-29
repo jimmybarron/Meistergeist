@@ -2,6 +2,7 @@
 
 .guessForm {
   display: flex;
+  z-index: 10;
   position: absolute;
   transform: translate(-50%, 0);
   left: 50%;

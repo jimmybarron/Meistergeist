@@ -7,15 +7,29 @@ html {
   font-family: "Space Grotesk", sans-serif;
 }
 
-.App {
-  position: relative;
+body {
+  background-color: var(--background);
+}
+
+.appContain {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
   height: 100vh;
+}
+
+.App {
+  max-width: 1000px;
+  max-height: 1000px;
+  display: flex;
+  justify-content: center;
+  position: relative;
   background-color: var(--background);
   text-align: center;
 }
 
 .logo {
-  width: 40vw;
+  width: 200px;
   color: var(--light-1);
   text-align: left;
   word-break: break-all;

@@ -55,9 +55,9 @@ function App() {
 
   return (
     <>
-      <div className="App">
-        <div className="logo">Meistergeist</div>
-        <div>
+      <div className="appContain">
+        <div className="App">
+          <div className="logo">Meistergeist</div>
           <GuessAttempts guesses={guesses} secretCode={secretCode} />
           {/* Hide Input or Reset Button based on win state */}
           {win === undefined ? (
@@ -72,8 +72,8 @@ function App() {
           ) : (
             <ResetButton handleClick={resetGame} />
           )}
+          <Announcement secretCode={secretCode} win={win} />
         </div>
-        <Announcement secretCode={secretCode} win={win} />
       </div>
     </>
   );
