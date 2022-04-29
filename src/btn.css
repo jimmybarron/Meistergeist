@@ -1,5 +1,6 @@
 .btnContain {
   display: flex;
+  z-index: 10;
   width: 320px;
   position: absolute;
   transform: translate(-50%, 0);

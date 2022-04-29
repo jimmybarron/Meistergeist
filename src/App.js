@@ -1,9 +1,10 @@
 import "./Normalize.css";
 import "./App.css";
+import { useEffect, useState } from "react";
 import GuessInput from "./GuessInput.js";
 import GuessAttempts from "./GuessAttempts.js";
 import ResetButton from "./ResetButton.js";
-import { useEffect, useState } from "react";
+import Announcement from "./Announcement";
 
 function App() {
   const [secretCode, setSecretCode] = useState();
@@ -55,13 +56,6 @@ function App() {
     <>
       <div className="App">
         <div className="logo">Meistergeist</div>
-        <div id="announcement" style={{ textAlign: "center", margin: "2rem" }}>
-          {win === true
-            ? "You Are A Winner"
-            : win === false
-            ? `You Are Not A Winner. Number was: ${secretCode}`
-            : ""}
-        </div>
         <div>
           <GuessAttempts guesses={guesses} secretCode={secretCode} />
           {/* Hide Input or Reset based on win state */}
@@ -76,6 +70,7 @@ function App() {
             <ResetButton handleClick={resetGame} />
           )}
         </div>
+        <Announcement secretCode={secretCode} win={win} />
       </div>
     </>
   );

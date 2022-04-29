@@ -17,9 +17,10 @@ html {
 .logo {
   width: 40vw;
   color: var(--light-1);
-  line-height: 5rem;
   text-align: left;
   word-break: break-all;
   font-size: 6.25rem;
+  letter-spacing: 0.2rem;
+  line-height: 5.5rem;
   padding: 1rem 1rem;
 }
