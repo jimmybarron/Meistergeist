@@ -10,6 +10,7 @@ function App() {
   const [secretCode, setSecretCode] = useState();
   const [win, setWin] = useState();
   const [guesses, setGuesses] = useState([]);
+  const [error, setError] = useState([]);
 
   // Get secret code
   const getSecretCode = async () => {
@@ -58,13 +59,15 @@ function App() {
         <div className="logo">Meistergeist</div>
         <div>
           <GuessAttempts guesses={guesses} secretCode={secretCode} />
-          {/* Hide Input or Reset based on win state */}
+          {/* Hide Input or Reset Button based on win state */}
           {win === undefined ? (
             <GuessInput
               secretCode={secretCode}
               guesses={guesses}
               setGuesses={setGuesses}
               setWin={setWin}
+              error={error}
+              setError={setError}
             />
           ) : (
             <ResetButton handleClick={resetGame} />

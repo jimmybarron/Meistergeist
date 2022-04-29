@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./GuessInput.css";
 
-const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
+const GuessInput = ({
+  secretCode,
+  guesses,
+  setGuesses,
+  setWin,
+  error,
+  setError,
+  ...props
+}) => {
   // Iterate through guess. Check for matching character, and matching position.
   // If number is contained in guess, log 'numMatch' and 'numAndPosMatch' for both, to guessSummary object
   const checkGuess = (secretCode, guess) => {
@@ -66,18 +74,19 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   const [guessInput, setGuessInput] = useState("");
   const onChange = (event) => {
     setGuessInput(event.target.value);
-
-    // Validate
-    // if (event.target.value.length > 3) {
-    //   event.target.form[0].checkValidity();
-    //   event.target.form[0].reportValidity();
-    // }
   };
 
+  // Submit Guess
   const submitGuess = (event) => {
     event.preventDefault();
-    checkGuess(secretCode, guessInput);
-    setGuessInput("");
+    // Validate;
+    if (guessInput.length > 3) {
+      checkGuess(secretCode, guessInput);
+      setGuessInput("");
+      setError("");
+    } else if (guessInput.length < 4) {
+      setError(`Enter a 4 digit code using only 0 - 7`);
+    }
   };
 
   return (
@@ -112,6 +121,8 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
         </div>
         <label
           style={{
+            position: "absolute",
+            bottom: "-50%",
             fontSize: "0.7rem",
             textAlign: "center",
             margin: "0.5rem 0",
@@ -119,9 +130,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
           }}
           htmlFor="guess"
         >
-          Enter a 4 digit code,
-          <br />
-          using only 0 - 7
+          {error}
         </label>
       </form>
     </>
