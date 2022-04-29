@@ -1,0 +1,22 @@
+.btnContain {
+  display: flex;
+  width: 320px;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 15%;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Space Grotesk", sans-serif;
+  font: bold;
+  font-size: 2rem;
+}
+
+.btn {
+  height: 3.5rem;
+  background-color: var(--accent);
+  color: var(--dark-1);
+  border: 0 black solid;
+  border-radius: 40rem;
+  padding: 0 4rem;
+}

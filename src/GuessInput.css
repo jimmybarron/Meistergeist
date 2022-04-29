@@ -14,7 +14,9 @@
   width: 10rem;
   height: 3.5rem;
   text-align: center;
+  font-family: "Space Grotesk", sans-serif;
   font-size: 2rem;
+  font-weight: bold;
   border-radius: 40rem;
   border: 0 black solid;
   margin-right: 0.5rem;

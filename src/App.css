@@ -1,7 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
 @import url(./Colors.css);
 
 html {
   font-size: 16px;
+  font-weight: bold;
+  font-family: "Space Grotesk", sans-serif;
 }
 
 .App {

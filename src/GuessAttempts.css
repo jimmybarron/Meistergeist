@@ -7,8 +7,9 @@
   position: absolute;
   top: 0rem;
   right: 0rem;
+  font-family: "Space Grotesk", sans-serif;
   text-align: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .pastGuess {
@@ -18,4 +19,5 @@
   color: var(--dark-1);
   font-size: 3rem;
   font-weight: bold;
+  margin: 0.25rem 0;
 }
