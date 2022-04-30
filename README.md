@@ -1,8 +1,10 @@
-# Getting Started with Create React App
+![logo](https://raw.githubusercontent.com/jimmybarron/mastermind/master/public/logo192.png?token=GHSAT0AAAAAABQZJF2P4G6J6P6XO5U3SZZAYTMSTYA)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [The game can be played here](https://meistergeist.netlify.app/)
 
-## Available Scripts
+# Meistergeist
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using React Hooks. Meistergeist is 'Mastermind' in German, the game created here. The design was inspired by the Bauhaus art style.
 
 In the project directory, you can run:
 
@@ -11,60 +13,31 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can also click the above link to play it on a hosted Netlify site.
 
-### `yarn test`
+## State Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+All state is saved in 'App' with the exception of a controlled input and a random number variable.
 
-### `yarn build`
+## Random Number API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A fetch request is issued and the response is turned into a string called 'secretCode' and saved in state.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Input & Errors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A controlled component input sends 'guess', and the 'secretCode' to 'checkGuess' to be evaluated and validated.\
+If it's not correct, 'guess' is evaluated for how many digits are correct and of what type, eg. 'numMatch' and 'numAndPosMatch'. The result, a 'guessAttempt' is outputted as an object into the 'guesses' state. If a guess is submitted with less than 4 characters a message is shown.
 
-### `yarn eject`
+## Guess & GuessAttempts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The 'guessAttempts' component maps through the past guesses and outputs JSX with UI feedback called 'Markers'. The markers correspond to the number of 'numMatch'(white circles) and 'numAndPosMatch'(black circles) in each guess. To avoid giving hints, the markers are randomized by concatenating two arrays of JSX of all the markers, and shifting the resulting array a random number of times.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Win / Lose Announcements
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+If the guess matches, the 'win' stats is triggered and 'GuessInput' is hidden, and 'ResetButton' is shown. If 9 attempts are made without 'win' being triggered, win is set to 'false'. The 'Announcement' component handles design and text changes based on win conditions, as well as the animated "progress bar" background.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## UI Animations
 
-## Learn More
+Interaction animations are based off of conditionals and driven using the [Framer Motion library](https://github.com/framer/motion).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[The Figma designs I created and inspiration can viewed here.](https://www.figma.com/file/vq8WrHnOpdjM16KDK1xke0/Meistergeist?node-id=0%3A1)
