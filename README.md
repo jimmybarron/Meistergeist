@@ -25,7 +25,7 @@ A fetch request is issued and the response is turned into a string called 'secre
 
 ## Input & Errors
 
-A controlled component input sends 'guess', and the 'secretCode' to 'checkGuess' to be evaluated and validated.\
+A controlled component input sends 'guess' and the 'secretCode' to 'checkGuess' to be evaluated and validated.\
 If it's not correct, 'guess' is evaluated for how many digits are correct and of what type, eg. 'numMatch' and 'numAndPosMatch'. The result, a 'guessAttempt' is outputted as an object into the 'guesses' state. If a guess is submitted with less than 4 characters a message is shown.
 
 ## Guess & GuessAttempts
