@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/jimmybarron/mastermind/master/public/logo192.png?token=GHSAT0AAAAAABQZJF2P4G6J6P6XO5U3SZZAYTMSTYA)
+![logo](https://raw.githubusercontent.com/jimmybarron/mastermind/2ebf9fb985a09a4bcb84699d1ab7d76a205c1db1/public/logo192.png?token=GHSAT0AAAAAABQZJF2O3MIDXGUAM6CPMNDKYTMUI2A)
 
 # [The game can be played here](https://meistergeist.netlify.app/)
 
