@@ -26,18 +26,18 @@ A fetch request is issued and the response is turned into a string called 'secre
 ## Input & Errors
 
 A controlled component input sends 'guess' and the 'secretCode' to 'checkGuess' to be evaluated and validated.\
-If it's not correct, 'guess' is evaluated for how many digits are correct and of what type, eg. 'numMatch' and 'numAndPosMatch'. The result, a 'guessAttempt' is outputted as an object into the 'guesses' state. If a guess is submitted with less than 4 characters a message is shown.
+If it's not correct, 'guess' is evaluated for how many digits are correct and of what type, eg. 'numMatch' and 'numAndPosMatch'. The result, a 'guessAttempt' is saved to the 'guesses' state. If a guess is submitted with less than 4 characters a message is shown.
 
 ## Guess & GuessAttempts
 
-The 'guessAttempts' component maps through the past guesses and outputs JSX with UI feedback called 'Markers'. The markers correspond to the number of 'numMatch'(white circles) and 'numAndPosMatch'(black circles) in each guess. To avoid giving hints, the markers are randomized by concatenating two arrays of JSX of all the markers, and shifting the resulting array a random number of times.
+The 'guessAttempts' component maps through the past guesses and outputs JSX with UI feedback called 'Markers'. The markers correspond to the number of 'numMatch'(white circles) and 'numAndPosMatch'(black circles) in each guess. To avoid giving hints, the markers are randomized by concatenating two arrays of JSX for all the markers, and shifting the resulting array a random number of times.
 
 ## Win / Lose Announcements
 
-If the guess matches, the 'win' stats is triggered and 'GuessInput' is hidden, and 'ResetButton' is shown. If 9 attempts are made without 'win' being triggered, win is set to 'false'. The 'Announcement' component handles design and text changes based on win conditions, as well as the animated "progress bar" background.
+If the guess matches, the 'win' state is triggered, 'GuessInput' is hidden, and 'ResetButton' is shown. If over 9 attempts are made without 'win' being triggered, win is set to 'false'. The 'Announcement' component handles design and text changes based on win conditions, as well as the animated "progress bar" background.
 
 ## UI Animations
 
 Interaction animations are based off of conditionals and driven using the [Framer Motion library](https://github.com/framer/motion).
 
-[The Figma designs I created and inspiration can viewed here.](https://www.figma.com/file/vq8WrHnOpdjM16KDK1xke0/Meistergeist?node-id=0%3A1)
+[The Figma designs I created and inspiration can be viewed here.](https://www.figma.com/file/vq8WrHnOpdjM16KDK1xke0/Meistergeist?node-id=0%3A1)
