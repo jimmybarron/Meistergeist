@@ -5,6 +5,7 @@ import GuessInput from "./GuessInput.js";
 import GuessAttempts from "./GuessAttempts.js";
 import ResetButton from "./ResetButton.js";
 import Announcement from "./Announcement";
+import { motion } from "framer-motion";
 
 function App() {
   const [secretCode, setSecretCode] = useState();
@@ -57,7 +58,12 @@ function App() {
     <>
       <div className="appContain">
         <div className="App">
-          <div className="logo">Meistergeist</div>
+          <motion.div
+            className="logo"
+            animate={{ opacity: win !== undefined ? 0 : 1 }}
+          >
+            Meistergeist
+          </motion.div>
           <GuessAttempts guesses={guesses} secretCode={secretCode} />
           {/* Hide Input or Reset Button based on win state */}
           {win === undefined ? (
@@ -72,7 +78,7 @@ function App() {
           ) : (
             <ResetButton handleClick={resetGame} />
           )}
-          <Announcement secretCode={secretCode} win={win} />
+          <Announcement secretCode={secretCode} win={win} guesses={guesses} />
         </div>
       </div>
     </>

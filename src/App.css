@@ -29,7 +29,9 @@ body {
 }
 
 .logo {
+  z-index: 10;
   width: 200px;
+  mix-blend-mode: color-dodge;
   color: var(--light-1);
   text-align: left;
   word-break: break-all;
