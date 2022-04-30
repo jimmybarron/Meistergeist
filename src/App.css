@@ -1,38 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap");
+@import url(./Colors.css);
+
+html {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.appContain {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .App {
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  background-color: var(--background);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo {
+  z-index: 10;
+  width: 200px;
+  mix-blend-mode: color-dodge;
+  color: var(--light-1);
+  text-align: left;
+  word-break: break-all;
+  font-size: 6.25rem;
+  letter-spacing: 0.2rem;
+  line-height: 84px;
+  padding: 1rem 1rem;
 }

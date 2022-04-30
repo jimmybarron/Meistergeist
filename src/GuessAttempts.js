@@ -1,40 +1,27 @@
 import "./GuessAttempts.css";
+import Markers from "./Markers.js";
+import { motion } from "framer-motion";
 
 const GuessAttempts = ({ guesses, secretCode }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        margin: "1rem 0",
-      }}
-    >
+    <div className="pastGuessContain">
       {guesses.map((guess, index) => {
         return (
-          <div
-            key={index}
-            style={{
-              width: "16rem",
-              padding: "0 0 1rem 0",
-              border: "1px black solid",
+          <motion.div
+            initial={{ y: 0, opacity: 0 }}
+            animate={{ y: 20, opacity: 1 }}
+            transition={{
+              ease: "easeOut",
+              duration: 0.5,
             }}
+            className="pastGuess"
           >
-            <div
-              className={
-                guess.numAndPosMatch > 0
-                  ? "numAndPosMatchStyle"
-                  : guess.numMatch > 0
-                  ? "numMatchStyle"
-                  : "noMatchStyle"
-              }
-            >
-              {guess.guessNum}
-            </div>
-            <div>Perfect numbers: {guess.numAndPosMatch}</div>
-            <div>Just Number Correct: {guess.numMatch}</div>
-          </div>
+            <div>{guess.guessNum}</div>
+            <Markers
+              numMatch={guess.numMatch}
+              numAndPosMatch={guess.numAndPosMatch}
+            />
+          </motion.div>
         );
       })}
     </div>

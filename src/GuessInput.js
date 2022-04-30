@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./GuessInput.css";
 
-const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
+const GuessInput = ({
+  secretCode,
+  guesses,
+  setGuesses,
+  setWin,
+  error,
+  setError,
+  ...props
+}) => {
   // Iterate through guess. Check for matching character, and matching position.
   // If number is contained in guess, log 'numMatch' and 'numAndPosMatch' for both, to guessSummary object
   const checkGuess = (secretCode, guess) => {
@@ -12,6 +20,7 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
     // Check for correct answer and return early
     if (guess === secretCode) {
       setWin(true);
+      return;
     }
 
     // Check for matching numbers and positions, then log and remove them from the search if so
@@ -65,73 +74,64 @@ const GuessInput = ({ secretCode, guesses, setGuesses, setWin, ...props }) => {
   const [guessInput, setGuessInput] = useState("");
   const onChange = (event) => {
     setGuessInput(event.target.value);
-
-    // Validate
-    // if (event.target.value.length > 3) {
-    //   event.target.form[0].checkValidity();
-    //   event.target.form[0].reportValidity();
-    // }
   };
 
+  // Submit Guess
   const submitGuess = (event) => {
     event.preventDefault();
-    checkGuess(secretCode, guessInput);
-    setGuessInput("");
+    // Validate;
+    if (guessInput.length > 3) {
+      checkGuess(secretCode, guessInput);
+      setGuessInput("");
+      setError("");
+    } else if (guessInput.length < 4) {
+      setError(`Enter a 4 digit code using only 0 - 7`);
+    }
   };
 
   return (
     <>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <div>{10 - guesses.length} Guess Remaining</div>
-        <input
-          id="guess"
-          autoFocus={true}
-          type="tel"
-          minLength={4}
-          maxLength={4}
-          pattern={"[0-7]{4}"}
-          required={true}
-          autoComplete="off"
-          style={{
-            width: "10rem",
-            height: "3rem",
-            textAlign: "center",
-            fontSize: "2rem",
-          }}
-          onChange={onChange}
-          value={guessInput}
-          onKeyPress={(event) => {
-            if (!/[0-7]/.test(event.key) && event.key !== "Enter") {
-              event.preventDefault();
-            }
-          }}
-        ></input>
+      <form className="guessForm">
+        {/* <div>{10 - guesses.length} Guess Remaining</div> */}
+        <div style={{ display: "flex", position: "relative" }}>
+          <input
+            id="guess"
+            autoFocus={true}
+            type="tel"
+            minLength={4}
+            maxLength={4}
+            pattern={"[0-7]{4}"}
+            required={true}
+            autoComplete="off"
+            onChange={onChange}
+            value={guessInput}
+            onKeyPress={(event) => {
+              if (!/[0-7]/.test(event.key) && event.key !== "Enter") {
+                event.preventDefault();
+              }
+            }}
+          ></input>
+          <button
+            name="submitGuess"
+            className="submitBtn"
+            onClick={submitGuess}
+          >
+            <div className="submitBtnSymbol">+</div>
+          </button>
+        </div>
         <label
           style={{
+            position: "absolute",
+            bottom: "-50%",
             fontSize: "0.7rem",
             textAlign: "center",
             margin: "0.5rem 0",
+            color: "var(--accent)",
           }}
           htmlFor="guess"
         >
-          Enter a 4 digit code,
-          <br />
-          using only 0 - 7
+          {error}
         </label>
-
-        <button
-          name="submitGuess"
-          style={{ width: "10rem", marginTop: "1rem", fontSize: "1rem" }}
-          onClick={submitGuess}
-        >
-          Submit
-        </button>
       </form>
     </>
   );

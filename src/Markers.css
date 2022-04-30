@@ -1,0 +1,27 @@
+@import url(./Colors.css);
+
+.markersContain {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
+  padding: 0 1rem;
+}
+
+.numMatch {
+  width: 13px;
+  height: 13px;
+  background-color: var(--light-1);
+  border-radius: 40rem;
+  margin: 2px;
+}
+
+.numAndPosMatch {
+  width: 13px;
+  height: 13px;
+  background-color: var(--dark-1);
+  border-radius: 40rem;
+  margin: 2px;
+}

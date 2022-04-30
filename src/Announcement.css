@@ -1,0 +1,64 @@
+#announcement {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.playingStyle {
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+  width: 100vw;
+  background-color: #eb450c;
+}
+
+.loseStyle {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #eb450c;
+}
+
+.winStyle {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #20646d;
+}
+
+.winLose {
+  opacity: 0;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 10rem;
+  transform: rotate(-45deg);
+  text-align: left;
+  font-size: 4rem;
+  line-height: 3.5rem;
+}
+
+.codeReveal {
+  opacity: 0;
+  position: absolute;
+  top: 18.3rem;
+  left: -0.5rem;
+  width: 10rem;
+  transform: rotate(45deg);
+  text-align: left;
+  font-size: 4rem;
+  line-height: 3.5rem;
+  color: var(--light-2);
+}
+
+.coolLine {
+  width: 200px;
+  height: 8px;
+  position: absolute;
+  top: 15.4rem;
+  left: -5.4rem;
+  transform: rotate(-45deg);
+  background-color: var(--dark-1);
+}
