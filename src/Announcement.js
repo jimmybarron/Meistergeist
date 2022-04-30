@@ -2,7 +2,6 @@ import "./Announcement.css";
 import { motion } from "framer-motion";
 
 const Announcement = ({ secretCode, win, guesses }) => {
-  console.log(`${guesses.length * 10}vh`);
   return (
     <motion.div
       id="announcement"
@@ -17,11 +16,31 @@ const Announcement = ({ secretCode, win, guesses }) => {
       }
       animate={{ height: `${guesses.length * 10}vh` }}
     >
-      <div className="winLose">
+      <motion.div
+        className="winLose"
+        animate={{ opacity: win !== undefined ? 1 : 0 }}
+        transition={{ delay: 0.8 }}
+      >
         {win === false ? "YOU LOSE" : win === true ? "YOU WIN" : ""}
-      </div>
-      <div className="codeReveal">{secretCode}</div>
-      <div className="coolLine"></div>
+      </motion.div>
+      <motion.div
+        className="codeReveal"
+        animate={{ opacity: win !== undefined ? 1 : 0 }}
+        transition={{ delay: 1.2 }}
+      >
+        {secretCode}
+      </motion.div>
+      <motion.div
+        className="coolLine"
+        initial={{ x: -200, y: -200, rotate: 45 }}
+        animate={{
+          x: 0,
+          y: 0,
+          rotate: -45,
+          opacity: win !== undefined ? 1 : 0,
+        }}
+        transition={{ delay: 0.5, duration: 1 }}
+      ></motion.div>
     </motion.div>
   );
 };
